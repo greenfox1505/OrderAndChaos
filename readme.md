@@ -30,7 +30,7 @@ The game object is created with 2 random user IDs.
 
 Constructor returns:
 
-```json
+```js
 {
 	Order:{{Order_GUID}},
 	Chaos:{{Chaos_GUID}},
@@ -40,7 +40,7 @@ Constructor returns:
 
 ## Board()
 
-```json
+```js
 {
 	Board://string of 36 chars of  "_"s, "X"s, and "O"s.
 	Turn://either "Order" or "Chaos"
@@ -71,4 +71,4 @@ Calls on Game Start.
 
 ### Game End
 
-Calls on game end. 
+Calls on game end. Returns the winner.
