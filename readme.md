@@ -32,6 +32,18 @@ All turn responces come via long polling. If a player is doesn't move
 for more than 5 minutes, the game is closed resulting in a victory for
 the other player.
 
+
+## API outline: 
+
+
+* Create Game
+* Join Game
+* List Games
+* ?List My Games
+* Move
+* Current Board
+* Wait For Move
+
 ## /
 
 Static files.
@@ -105,13 +117,4 @@ Calls on game end. Returns the winner.
 
 
 
-/*
-Create Game
-Join Game
-List Games
-?List My Games
-Move
-Current Board
-Wait For Move
 
-*/
