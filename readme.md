@@ -37,11 +37,10 @@ the other player.
 
 
 * Create Game
-* Join Game
 * List Games
-* ?List My Games
-* Move
+* Join Game
 * Current Board
+* Move
 * Wait For Move
 
 ## /
@@ -50,9 +49,19 @@ Static files.
 
 ## /newGame
 
-returns 
+creates a new game, connects the player as Order
 
-## /publicGame
+```
+	{gameID:GUID,order:GUID}
+```
+
+## /joinGame/:gameID
+
+Joins an existing game as Chaos.
+
+Returns Chaos's GUID.
+
+If called after Chaos has connected once, returns error.
 
 ## /game/:GAME/:PLAYER
 
@@ -64,7 +73,7 @@ Returns Board if valid move. Else returns error.
 
 ## game/:GAME/:PLAYER/poll
 
-Turn Polling. Returns board when turn is completed.
+Turn Polling. Returns board when turn is completed, or keep alive
 
 # Game Logic
 
