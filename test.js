@@ -72,3 +72,38 @@ for(var i = 0; i < 12; i++){
 	console.log("WIN:",g.CheckWin(),"\n===");
 }
 })
+
+
+
+
+
+var GameLobby = require("./gameLobby.js")
+
+var game = GameLobby();
+
+var player1 = game.first;
+var player2 = game.playerJoin();
+
+console.log(game);
+
+function testGame(inputData){
+	if(inputData.players.length !=2 ){throw "INCORRECT PLAYERS"};
+	console.log("test game created with", inputData);
+	var output = {
+		start:function(players){
+			output.players = players;
+		},
+		testCmd:function(args){return "testCmd called with '" + args + "'";},
+		Order:inputData.players[0],
+		Chaos:inputData.players[1]
+	}
+	return output;
+}
+
+
+game.gameStart(testGame);
+console.log(game.gameCommand({cmd:"testCmd",args:"COMMAND ARGS!"}))
+
+console.log(game)
+
+
