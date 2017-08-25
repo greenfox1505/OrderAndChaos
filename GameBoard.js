@@ -3,9 +3,9 @@
 
 var guid = require("uuid/v4")
 
-module.exports = function(){
-	const Order = guid();
-	const Chaos = guid();
+module.exports = function(args){
+	const Order = args.firstPlayer;
+	const Chaos = "";
 	var Game = {
 		History:()=>History
 	};
@@ -33,10 +33,16 @@ module.exports = function(){
 			throw new Error("BAD TURN!, CHECK!")
 	}
 
+	Game.joinGame = (playerID) => {
+		//only 2 players, first player joins on creation
+		Chaos = playerID;
+		delete Game.joinGame;
+	}
+
 	Game.onMove = ()=>{}
 	Game.onEnd = ()=>{}
 	function GameEvent(Type,input){//check for victory, return last board, etc
-		//this is broken. this works, but it could be so much better.
+		//this is stupid. it works, but it could be so much better.
 		if(Type == "Move"){
 			Game.onMove(input);
 			//check for win
@@ -137,47 +143,3 @@ module.exports = function(){
 	return { Order:Order,Chaos:Chaos,Game:Game}
 
 }
-
-//# Game Logic
-
-//The game object is created with 2 random user IDs.
-
-//Constructor returns:
-
-//```js
-//{
-	//Order:{{Order_GUID}},
-	//Chaos:{{Chaos_GUID}},
-	//Game:{{GameControl}}//object to hold callbacks
-//}
-//```
-
-//## Board()
-
-//```js
-//{
-	//Board://string of 36 chars of  "_"s, "X"s, and "O"s.
-	//Turn://either "Order" or "Chaos"
-//}
-//```
-
-//## MoveHistory()
-
-//A complete move history as comma seperated list.
-
-//"OX33,CO22,OX32", etc
-
-
-//## Events
-
-//### Move Occured
-
-//Returns the board and the current player's turn.
-
-//### Game Start
-
-//Calls on Game Start.
-
-//### Game End
-
-////Calls on game end. Returns the winner.
