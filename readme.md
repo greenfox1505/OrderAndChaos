@@ -125,5 +125,23 @@ Calls on Game Start.
 Calls on game end. Returns the winner.
 
 
+./GameBoard.js
+
+# Technical Flow
+
+Load page, click "new game". background loads: `/newGame?player=$(PlayerUUID)`
+
+`/newGame` creates game, returns GameUUID, client redirects to: `/game.html?id=$(GameUUID)&player=$(PlayerUUID)`
+
+`/game.html` reads URL params, requests `/gameEvent?id=$(GameUUID)` data. Holds until player2 is generated. Player2 URL `/joinGame?id=$(GameUUID)`.
+
+`/joinGame?id=$(GameUUID)` generates UUID for player2, redirects to `/game.html?id=$(GameUUID)&player=$(PlayerUUID)`
+
+Once game has started, events are passed through `/gameEvent?id=$(GameUUID)`. Players pass moves through push requests on this url.
 
 
+`/index.html`
+`/game.html`
+`/newGame`
+`/joinGame.html`
+`/gameEvent`
